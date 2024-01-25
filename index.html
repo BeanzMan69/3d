@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
+    <title>Create 3D Websites!</title>
+    <style>
+        body {
+            margin: none;
+            background-color: rgb(43, 50, 67);
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center; /* Center content horizontally */
+            align-items: center;
+            height: 100vh; /* Set height to 100% of the viewport height */
+            margin: 0; /* Remove default margin */
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: fit-content;
+            padding: 5px;
+            background-color: gray;
+        }
+
+        header h1 {
+            color: aliceblue;
+            margin-left: 15px;
+        }
+
+        .get {
+            display: flex;
+            flex-direction: column; /* Align children vertically */
+            justify-content: center; /* Center content vertically */
+            align-items: center; /* Center content horizontally */
+            margin-top: 10px;
+            color: aliceblue;
+        }
+
+        .getURL {
+            width: 300px;
+            height: 35px;
+            border: none;
+            border-radius: 30px;
+            padding: 8px;
+            font-size: 27px;
+        }
+
+        .get button {
+            border: none;
+            border-radius: 15px;
+            font-size: 30px;
+            width: 150px;
+            height: fit-content;
+            padding: 7px;
+            color: aliceblue;
+            background-color: rgb(39, 39, 173);
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        .iframeLoaded {
+            width: 100%;
+            height: max-content;
+        }
+    </style>    
+</head>
+<body>
+    <header>
+        <h1>3D</h1>
+    </header>
+    <main>
+        <div class="get">
+            <h2>Make Almost Any Website 3D Today!</h2>
+            <input class="getURL" type="url" placeholder="Start with https://">
+            <button onclick="getURL()">Make 3D!</button>
+        </div>
+    </main>
+    <script>
+        window.onload = function() {
+            // Check if the URL contains more than the original one
+            const originalURL = window.location.href.split('?')[0];
+            const currentURL = decodeURIComponent(window.location.href);
+            
+            if (currentURL !== originalURL) {
+                const encodedURL = currentURL.substring(currentURL.indexOf('?') + 1);
+                createIframe(encodedURL);
+            }
+        };
+
+        function getURL() {
+            const url = document.querySelector('.getURL').value;
+            const encodedURL = encodeURIComponent(url);
+            
+            // Open the encoded URL in a new window
+            window.open('https://encodedsite?' + encodedURL);
+        }
+
+        function createIframe(src) {
+            const iframe = document.createElement('iframe');
+            iframe.src = src;
+            iframe.classList.add('iframeLoaded');
+            
+            // Append the iframe to the body
+            document.body.appendChild(iframe);
+        }
+    </script>
+</body>
+</html>
