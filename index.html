@@ -65,7 +65,7 @@
 
         .iframeLoaded {
             width: 100%;
-            height: max-content;
+            height: 100vh;
         }
     </style>    
 </head>
@@ -102,6 +102,9 @@
 
         function createIframe(src) {
             const iframe = document.createElement('iframe');
+            const body = document.querySelector('body');
+
+            body.style.display = "none";
             iframe.src = src;
             iframe.classList.add('iframeLoaded');
             
